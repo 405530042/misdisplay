@@ -1,13 +1,52 @@
-<?php
+﻿<?php
 require('./connect/connect.php');
 require('./template/header.php');
 require('./template/nav.php');
 require('timer.php');
 ?>
-
+
+
+
+<?php
+
+if (!isset($_SESSION['user_id'] ) || trim($_SESSION['user_id'] ) == '') {
+
+?>
+
+    <div class="pre-container full-page">
+        <div class="login-container">
+            <header>
+                人員登錄系統
+            </header>
+            
+            <form action="./connect/login.php" method="post" name="logincheck">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="number" name="username" placeholder="Username" autocomplete="off" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" autocomplete="off" required>
+                </div>
+
+                <div class="form-group">
+                    <button class="button" id="send" name="submit" style="width: 100%;">
+                        登錄
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<?php
+
+}
+
+else {
+
+?>
     <div class="pre-container">
         <div class="msg-container">
-            <header> 黏仔雲端 </header>
+            <header> 專題系統 </header>
 <?php
 if (isset($_GET['article_id'])) {
     $article_id = intval(htmlspecialchars($_GET['article_id']));
@@ -123,8 +162,12 @@ if (isset($_GET['article_id'])) {
 <?php
             }
 ?>
-                        </ul>
-                    </div>
+                        </ul>
+<?php
+        }
+?>
+                </div>
+
 <?php
     if (!isset($_SESSION['user_id'] ) || trim($_SESSION['user_id'] ) == '') {
 ?>
@@ -169,11 +212,11 @@ if (isset($_GET['article_id'])) {
                                 </div>
                             </div>
                         </form>
-                    </div>
-                </div>
+                    </div>
+
             </div>
+        </div>
 <?php
-        }
     }
 }
 else {
@@ -211,7 +254,8 @@ else {
             $direction= $article_content['direction'];
             $image= $article_content['image'];
             // profile 圖片的 url
-            $url = "./update/img/$direction/$image.jpg"; // $article_content['url'];
+            $url = "./update/img/$direction/$image.jpg"; // $article_content['url'];
+            if (!file_exists($url)) $url = "./img/PDF.png";
 ?>
                     <!-- <li><?php echo '<a href="index.php?article_id=',$id,'">',$name, '</a>'; ?></li> -->
                     <li class="profile-box">
@@ -227,9 +271,11 @@ else {
                     </li>
 <?php
         }
-    }
 ?>
                 </ul>
+<?php
+    }
+?>
             </div>
 <?php
 }
@@ -249,4 +295,5 @@ else {
 
 <?php
 require('./template/footer.php');
+}
 ?>

@@ -61,9 +61,9 @@ if (is_uploaded_file($_FILES['file']['tmp_name'])) {
                 }
                 else {
                     $name = htmlspecialchars($_POST['name']);
-                    $result = move_uploaded_file($_FILES['file']['tmp_name'], "update/$direction/$name.pdf");
-
-                    if ($result == 1) { 
+                    $result2 = move_uploaded_file($_FILES['file']['tmp_name'], iconv("utf-8", "big5","update/".$direction."/".$name.".pdf"));
+		//move_uploaded_file($_FILES['file']['tmp_name'],"update/".$direction."/".$name.".pdf")
+                    if (result2) { 
                         $introduction = htmlspecialchars($_POST['intro']);
                         $stmt = $conn->prepare("SELECT * FROM update_data WHERE file_name = ?");
                         $params = $name;
@@ -74,24 +74,20 @@ if (is_uploaded_file($_FILES['file']['tmp_name'])) {
                         $rows = mysqli_num_rows($result);
 
                         if ($rows == 0) {
-                            $time = date("Y-m-d h:i:sa");
-                            	$stmt = $conn->prepare("INSERT INTO `update_data`(direction,file_name,intro,team,time,image) VALUES (?,?,?,?,?,?)");
-                        		$stmt->bind_param('ssssss',$direction ,$params, $introduction, $_SESSION['team'], $time,$_SESSION['id']);
-                        		$stmt->execute();
-                        		$stmt->close();
-                            // $update = $conn->prepare("insert into update_data(direction,file_name,intro,team,time,image) values(?,?,?,?,?,?)");
-                            // $params = $name;
-                            // $update->bind_param('ssssss',$direction ,$params, $introduction, $_SESSION['team'], $time,$_SESSION['id']);
-                            // $update->execute();
-                            // $update->close();
-                            
-                            $check = $conn->prepare("UPDATE member SET update_check = ? WHERE team = ?");
-                            $success = 1;
-                            $check->bind_param('is',$success,$_SESSION['team']);
-                            $check->execute();
-                            $check->close();
-                            
-                            $_SESSION['error'] = 8;
+                            	$time = date("Y-m-d H:i:s");
+                            		$stmt = $conn->prepare("INSERT INTO update_data (direction,file_name,intro,team,time,image) VALUES (?,?,?,?,?,?)");
+                        		$stmt->bind_param('ssssss',$direction , $params, $introduction, $_SESSION['team'], $time, $_SESSION['id']);
+                        		$stmt->execute();
+
+                            		$check = $conn->prepare("UPDATE member SET update_check = ? WHERE team = ?");
+                            		$success = 1;
+                            		$check->bind_param('is',$success,$_SESSION['team']);
+                            		$check->execute();
+					
+                            		$check->close();
+                            		echo "123:". $stmt->error;
+					$stmt->close();
+                            		$_SESSION['error'] = 8;
   
 ?>
 			<script type="text/javascript">
@@ -115,13 +111,14 @@ if (is_uploaded_file($_FILES['file']['tmp_name'])) {
                     }
                     else {
                         $_SESSION['error']=10;
-                        // header("location: ./connect/error.php");
+                        // header("location: ./connect/error.php");
+			echo $result2;
 ?>
-			<script type="text/javascript">
+			<!-- <script type="text/javascript">
 			    setTimeout(() => {
 			        window.location ="./connect/error.php";
 			    }, 0);
-            </script>
+            </script> -->
 <?php
                     }
                 }

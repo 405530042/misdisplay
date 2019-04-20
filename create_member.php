@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 include('./connect/connect.php');
 require('./template/header.php');
 require('./template/nav.php');
@@ -18,7 +18,7 @@ else {
 ?>
 
 <div class="pre-container">
-    <header> 黏仔雲端 </header>
+    <header> 專題系統</header>
     <div class="page-hint">
         <div> 首頁 > 設定登入人員名單 </div>
         <div>

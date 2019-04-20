@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 require('./connect/connect.php');
 session_start();
 require('./template/header.php');
@@ -7,7 +7,7 @@ require('timer.php');
 ?>
 
 <div class="pre-container">
-    <header> 黏仔雲端 </header>
+    <header> 專題系統 </header>
     <div class="page-hint">
         <div> 首頁 > 上傳檔案 </div>
         <div>

@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 require('../connect/connect.php');
 require('../template/header-in-file.php');
 require('../template/nav-in-file.php');
@@ -18,7 +18,7 @@ else {
 ?>
 
 <div class="pre-container">
-    <header> 黏仔雲端 </header>
+    <header> 專題系統 </header>
     <div class="page-hint">
         <div> 首頁 > 隊伍檔案 > 重新上傳檔案 </div>
         <div>

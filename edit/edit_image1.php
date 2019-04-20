@@ -1,4 +1,4 @@
-ï»¿<?php 
+<?php 
 require('../connect/connect.php');
 require('../connect/function.php');
 require('../template/header-in-file.php');
@@ -6,7 +6,7 @@ require('../template/nav-in-file.php');
 header("Content-Type:text/html; charset=utf-8");
 session_start();
 if ($_SESSION['user_id'] != 3) {
-	echo 'æ¬Šé™ä¸è¶³';
+	echo 'Åv­­¤£¨¬';
 // 	header("refresh:0.75; url=../index.php");
 ?>
 			<script type="text/javascript">
@@ -19,12 +19,12 @@ if ($_SESSION['user_id'] != 3) {
 else {
 ?>
 <div class="pre-container">
-    <header> å°ˆé¡Œç³»çµ± </header>
+    <header> ÂH¥J¶³ºÝ </header>
     <div class="page-hint">
-        <div> é¦–é  > éšŠä¼æª”æ¡ˆ > æ›´æ–°å°é¢ </div>
+        <div> ­º­¶ > ¶¤¥îÀÉ®× > §ó·s«Ê­± </div>
         <div>
             <a href="../profile.php">
-                å›žä¸Šä¸€é 
+                ¦^¤W¤@­¶
                 <img src="../img/back.png" alt="back">
             </a>
         </div>
@@ -40,17 +40,17 @@ else {
 	$stmt->close();
 ?>
         <div class="info-box">
-            <div class="info-title"> æ›´æ–°å°é¢ï¼ˆç¬¬ <?php echo $_SESSION['team']; ?> çµ„ï¼‰ </div>
+            <div class="info-title"> §ó·s«Ê­±¡]²Ä <?php echo $_SESSION['team']; ?> ²Õ¡^ </div>
 
             <div class="info-content">
                 <div class="info-content-form">
                 	<form action="" enctype="multipart/form-data" method="post">
                 	    <div class="form-group">
-                	        <label> é¸æ“‡è³‡æ–™å¤¾ </label>
+                	        <label> ¿ï¾Ü¸ê®Æ§¨ </label>
                 			<select name="direction" id="">
                     			<?php
                     			    if (mysqli_num_rows($result) === 0) {
-                    			        echo "<option value='ç„¡'> ç„¡ </option>";
+                    			        echo "<option value='µL'> µL </option>";
                     			    }
                     			    else {
                             		    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
@@ -64,13 +64,13 @@ else {
                 		</div>
                 		
                 	    <div class="form-group">
-                	        <label> ä¸Šå‚³æª”æ¡ˆ </label>
+                	        <label> ¤W¶ÇÀÉ®× </label>
 		                    <input type="file" id="file" name="file" accept="image/*" value="" required />
                 		</div>
                 		
                 		<div class="form-group submit-area">
-		                    <!--<input type="submit" name="image" value="é€å‡º" />-->
-		                    <button type="submit" name="image"> é€å‡º </button>
+		                    <!--<input type="submit" name="image" value="°e¥X" />-->
+		                    <button type="submit" name="image"> °e¥X </button>
                     	</div>
                 	</form>
                 </div>

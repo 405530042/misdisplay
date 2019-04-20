@@ -2,11 +2,11 @@
 
 $server = "localhost"; 
 
-$user = "root";        
+$user = "exhibition";        
 
-$password = "";
+$password = "BLUHpR4t442BsLw4M72i8RJM9xSq6yz";
 
-$db = "display";
+$db = "exhibition";
 
  
 

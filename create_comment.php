@@ -1,6 +1,8 @@
-<?php
+﻿<?php
 require('./connect/connect.php');
-session_start();
+session_start();
+
+date_default_timezone_set("Asia/Taipei");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (!isset($_SESSION['user_id']) || trim($_SESSION['user_id']) == '') {
@@ -22,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 			<script type="text/javascript">
 			    setTimeout(() => {
-			        window.location ="./index.php<?php $url ?>";
+			        window.location ="./index.php<?php echo $url ?>";
 			    }, 0);
             </script>
 <?php
@@ -40,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 			<script type="text/javascript">
 			    setTimeout(() => {
-			        window.location ="./index.php<?php $url ?>";
+			        window.location ="./index.php<?php echo $url ?>";
 			    }, 0);
             </script>
 <?php
